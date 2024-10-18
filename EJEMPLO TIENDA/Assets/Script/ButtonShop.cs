@@ -6,9 +6,10 @@ public class ButtonShop : MonoBehaviour
 {
     [SerializeField]
     Wallet myWallet;
-    // [SerializeField]
+    [SerializeField]
     TextMeshProUGUI textButton;
-
+    [SerializeField]
+    string[] nombreAleatorio;
     [SerializeField]
     string nameItem = "Objeto";
     [SerializeField]
@@ -16,6 +17,8 @@ public class ButtonShop : MonoBehaviour
 
     void Start()
     {
+        nameItem = nombreAleatorio[Random.Range(0, nombreAleatorio.Length)];
+
         textButton = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         priceItem = Random.Range(25f, 350f);
         textButton.text = priceItem.ToString() + " €";
@@ -23,7 +26,7 @@ public class ButtonShop : MonoBehaviour
 
     public void ClickEnBotonDeTienda()
     {
-        myWallet.RestarSaldo(priceItem);
+        myWallet.InformarCompra(nameItem, priceItem);
 
     }
 }
